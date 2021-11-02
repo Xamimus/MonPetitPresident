@@ -1,7 +1,14 @@
 <template>
-  <Tutorial/>
+  <div>
+    <Box />
+    <Footer/>
+  </div>
 </template>
 
 <script>
-export default {}
+import app from '../styles/app.css'
+
+export default {
+  style: app,
+}
 </script>
