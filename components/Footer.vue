@@ -1,13 +1,21 @@
 <template>
     <div class="footer-container">
-        <div class="credits-container">
-            Coucou
-        </div>
-        <div class="legal-container">
-            Coucou
-        </div>  
+        <button class="credits-container">
+            © {{this.date}} | Mon Petit Président
+        </button>
+        <button class="legal-container">
+            Mentions Légales | Politique de confidentialité
+        </button>  
     </div>
 </template>
+
+<script>
+export default {
+    data: () => ({
+        date: new Date().getFullYear(),
+  }), 
+}
+</script>
 
 <style scoped>
 .footer-container{
@@ -18,5 +26,10 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+}
+
+button{
+    background-color: transparent;
+    border: none;
 }
 </style>
