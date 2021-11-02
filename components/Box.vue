@@ -1,7 +1,15 @@
 <template>
     <div class="box-container">
         <div class="box">
-
+            <div class="box-header">
+                <h1>Mon premier titre</h1>
+            </div>
+            <div class="box-content">
+                Mon premier contenu
+            </div>
+            <div class="box-footer">
+                <a class="btn btn-primary" href="#">Puis un bouton qui fait rien</a>
+            </div>
         </div>
     </div>
 </template>
@@ -20,6 +28,14 @@
         width: 45vw;
         border-radius: 15px;
         box-shadow: 5px 5px 5px rgb(48, 48, 48);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .box-header h1{
+        
     }
 
     @media only screen and (max-width: 600px) {
