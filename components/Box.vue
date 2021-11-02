@@ -8,7 +8,7 @@
                 Mon premier contenu
             </div>
             <div class="box-footer">
-                <a class="btn btn-primary" href="#">Puis un bouton qui fait rien</a>
+                <a class="btn btn-outline-success" href="#">Puis un bouton qui fait rien</a>
             </div>
         </div>
     </div>
