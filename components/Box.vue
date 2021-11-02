@@ -6,6 +6,8 @@
     </div>
 </template>
 
+
+
 <style scoped>
     .box-container{
         min-height: 95vh;
