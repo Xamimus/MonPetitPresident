@@ -1,49 +1,32 @@
 <template>
-    <div class="footer-container" id="app">
-        <button class="credits-container" @click="showModal">
+    <div class="footer-container">
+        <span class="credits-container">
             © {{new Date().getFullYear()}} | Mon Petit Président
-        </button>
-        <button class="legal-container" @click="showModal">
-            Mentions Légales | Politique de confidentialité
-        </button>  
-        <Modal
-        v-show="isModalVisible"
-        @close="closeModal"
-        >
-        <template v-slot:header>
-            This is a new modal header.
-        </template>
-
-        <template v-slot:body>
-            This is a new modal body.
-        </template>
-
-        <template v-slot:footer>
-            This is a new modal footer.
-        </template>
-        </Modal>
+        </span>
+        <div>
+            <button class="legal-container" @click="method('Mentions Légales', 'Content de Mentions Légales | Politique de confidentialité')">
+                Mentions Légales
+            </button>  
+            <span>|</span>
+            <button class="legal-container" @click="method('Politique de confidentialité', 'Content de Mentions Légales | Politique de confidentialité')">
+                Politique de confidentialité
+            </button>
+        </div>
     </div>
 </template>
 
 <script>
-import Modal from './Modal.vue';
 export default {
     name: 'App',
-    components: {
-      Modal,
-    },
-    data() {
-      return {
-        isModalVisible: false,
-      };
+    props: ["method"],
+    created() {
+        // Use the parent function directly here
+        //this.method();
     },
     methods: {
-      showModal() {
-        this.isModalVisible = true;
-      },
-      closeModal() {
-        this.isModalVisible = false;
-      }
+        showModal(Title, Content) {
+            this.method();
+        }
     }
 }
 </script>

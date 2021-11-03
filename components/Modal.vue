@@ -3,33 +3,23 @@
     <div class="modal">
       <header class="modal-header">
         <slot name="header">
-          This is the default title!
+          {{Title}}
         </slot>
-        <button
-          type="button"
-          class="btn-close"
-          @click="close"
-        >
-          x
-        </button>
       </header>
 
       <section class="modal-body">
         <slot name="body">
-          This is the default body!
+          {{Content}}
         </slot>
        </section>
 
       <footer class="modal-footer">
-        <slot name="footer">
-          This is the default footer!
-        </slot>
         <button
           type="button"
           class="btn-green"
           @click="close"
         >
-          Close Modal
+          Fermer X
         </button>
       </footer>
     </div>
@@ -39,6 +29,8 @@
 <script>
   export default {
     name: 'Modal',
+    Title: '',
+    Content: '',
     methods: {
       close() {
         this.$emit('close');
@@ -54,25 +46,43 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.3);
-    background: #000;
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
+    align-content: center;
+    z-index: 10;
   }
 
   .modal {
-    background: #fff;
+    background-color: rgb(255, 255, 255);
     box-shadow: 2px 2px 20px 1px;
-    overflow-x: auto;
+    position: relative;
     display: flex;
     flex-direction: column;
+    height: 65vh;
+    width: 45vw;
+    justify-self: center;
+    z-index: 11;
+    opacity: 1;
   }
 
-  .modal-header,
+    .modal-header {
+    padding: 15px;
+    display: flex;
+    justify-self: center;
+    text-align: center;
+    align-self: center;
+  }
+
   .modal-footer {
     padding: 15px;
     display: flex;
+    justify-self: end;
+    text-align: right;
+    align-self: end;
   }
 
   .modal-header {
