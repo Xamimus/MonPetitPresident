@@ -8,9 +8,9 @@
                 Mentions Légales
             </button>  
             <span>|</span>
-            <button class="legal-container" @click="method('Politique de confidentialité', 'Content de Mentions Légales | Politique de confidentialité')">
-                Politique de confidentialité
-            </button>
+            <a href="../files/Politique_de_confidentialite.pdf" download="Politique_de_confidentialite.pdf">
+                <button type="button">Politique de confidentialité</button> 
+            </a>
         </div>
     </div>
 </template>
