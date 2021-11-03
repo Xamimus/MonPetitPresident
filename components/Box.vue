@@ -4,8 +4,7 @@
       <div class="col"><div class="polygonblue"></div></div>
       <div class="col">
         <div class="box">
-          <div class="row"></div>
-          <div class="row"></div>
+          <div><Quizz /></div>
         </div>
       </div>
       <div class="col"><div class="polygonred"></div></div>
@@ -44,21 +43,20 @@
   z-index: 2;
 }
 
-    .box{
-        background-color: #fff;
-        height: 60vh;
-        width: 45vw;
-        border-radius: 15px;
-        box-shadow: 5px 5px 5px rgb(48, 48, 48);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-    }
+.box {
+  background-color: #fff;
+  height: 60vh;
+  width: 45vw;
+  border-radius: 15px;
+  box-shadow: 5px 5px 5px rgb(48, 48, 48);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
 
-    .box-header h1{
-        
-    }
+.box-header h1 {
+}
 .polygonred {
   -webkit-clip-path: polygon(100% 100%, 0% 100%, 100% 0);
   clip-path: polygon(100% 100%, 0% 100%, 100% 0);
@@ -76,8 +74,9 @@
     height: 50vh;
     width: 80vw;
   }
-  .polygonblue, .polygonred {
-      display: none;
+  .polygonblue,
+  .polygonred {
+    display: none;
   }
 }
 
