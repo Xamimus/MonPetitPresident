@@ -1,5 +1,15 @@
 # MonPetitPresident
 
+Le questionnaire que vous vous apprêtez à remplir est en version beta. Les résultats seront donc affichés de manière sommaire et la fiabilité du test ne nous semble pas encore optimale. De plus, à ce stade du développement nous n'avons pu incorporer que les six principaux partis aux élections présidentielles 2022 (Europe Écologie Les Verts, Rassemblement National, La République En Marche, La France Insoumise, Les Républicains, Parti Socialiste)
+
+## .env
+
+Pour faire fonctionner Firebase, il faut créer un fichier .env comportant les informations que nous vous avons envoyées dans le Mail du 04/11/2021 à 16h57.
+
+
+
+# Doc par défaut de Nuxt
+
 ## Build Setup
 
 ```bash
