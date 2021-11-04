@@ -89,10 +89,8 @@ export default {
         let data = e.data()
 
         for(let object of Object.entries(data)){
-          console.log("currentObject : ", object)
           this.questions.push(object)
         }
-        console.log("this.questions : ", this.questions)
       })
 
       
@@ -115,7 +113,6 @@ export default {
         }
       }
       this.selectedValue = e.value;
-      console.log("value : ", this.selectedValue)
     },
     nextQuestion() {
       if (!this.next) {
@@ -124,13 +121,9 @@ export default {
       if(this.selectedValue){
         for(let value of this.selectedValue) {
           this.finalResult.push(value)
-          console.log("Nombre de PS => ", this.finalResult.filter(function (value) {
-            return value === "PS"
-          }).length)
         }
       }
       this.selectedValue = ""
-      console.log("Result : ", this.finalResult)
       // progress bar
       this.progress = this.progress + 100 / this.questions.length;
       if (this.questions.length - 1 == this.currentQuizzIndex) {
@@ -187,7 +180,6 @@ export default {
       }
 
       this.displayResult = possibleAnswers;
-      console.log(this.displayResult)
     },
     restartQuizz() {
       Object.assign(this.$data, this.$options.data()); // reset data
