@@ -491,6 +491,17 @@ export default {
       if (e.correct) {
         this.score++;
       }
+      console.log(e.suggestion)
+      var elts = document.getElementsByTagName("li");
+      for (let i = 0; i < elts.length; i++) {
+        if (e.suggestion === elts[i].innerText) {
+          elts[i].style.color = 'white',
+          elts[i].style.backgroundColor = 'green'
+        } else {
+          elts[i].style.color = 'black',
+          elts[i].style.backgroundColor = 'white'
+        }
+      }
     },
     // check(status) {
     //   if (status.correct) {
