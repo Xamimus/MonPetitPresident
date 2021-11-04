@@ -29,8 +29,10 @@
           v-for="(element, index) in displayResult"
           :key="index"
         >
-          {{element.name}} est apparu {{element.count}} fois.
-          {{element.count * 6.25}} / 100
+          {{element.name}} est apparu {{element.count}} fois. 
+          <span class="result-score">
+            {{element.count * (100 / finalResult.length)}} %
+          </span>
         </p>
       </div>
       <div class="btn-restart">
@@ -326,6 +328,10 @@ li > div {
   transition: 0.5s;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.result-score{
+  font-weight: 800;
 }
 
 @media Screen and (max-width: 900px) {
