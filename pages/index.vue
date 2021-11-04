@@ -20,15 +20,7 @@
 <script>
 import Modal from '../components/Modal.vue';
 import app from '../styles/app.css'
-/* Vue.component('myApp', {
-  methods: {
-    showModal(Title, Content) {
-      this.isModalVisible = true,
-      this.MyTitle = Title,
-      this.MyContent = Content;
-    },
-  }
-})  */
+
 export default {
     style: app,
     components: {
@@ -40,13 +32,6 @@ export default {
         MyTitle: '',
         MyContent: '',
       };
-    },
-    mounted() {
-      this.$fire.firestore
-      .collection('questions')
-      .doc('Hk7ctzR5hbzEwq2BOoIZ')
-      .get()
-      .then((e) => console.log(e.data()))
     },
     methods: {
       showModal(Title, Content) {
