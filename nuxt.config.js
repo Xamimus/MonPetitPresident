@@ -38,7 +38,24 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/bootstrap
     'bootstrap-vue/nuxt',
+    '@nuxtjs/firebase',
+    '@nuxtjs/dotenv',
   ],
+
+  firebase: {
+    config: {
+      apiKey: process.env.apiKey,
+      authDomain: process.env.authDomain,
+      projectId: process.env.projectId,
+      storageBucket: process.env.storageBucket,
+      messagingSenderId: process.env.messagingSenderId,
+      appId: process.env.appId,
+      databaseUrl: process.env.databaseUrl
+    },
+    services: {
+      firestore: true // Just as example. Can be any other service.
+    },
+  },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

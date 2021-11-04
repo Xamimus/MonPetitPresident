@@ -41,10 +41,14 @@ export default {
         MyContent: '',
       };
     },
+    mounted() {
+      this.$fire.firestore
+      .collection('questions')
+      .doc('Hk7ctzR5hbzEwq2BOoIZ')
+      .get()
+      .then((e) => console.log(e.data()))
+    },
     methods: {
-      test() {
-        alert("Test")
-      },
       showModal(Title, Content) {
         this.isModalVisible = true,
         this.MyTitle = Title,
