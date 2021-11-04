@@ -6,7 +6,7 @@
       :key="index"
       v-show="quizz">
       <div class="box-question"></div>
-      <h2>Question {{ currentQuizzIndex + 1 }}/{{ questions.length }}</h2>
+      <p>Question {{ currentQuizzIndex + 1 }}/{{ questions.length }}</p>
       <h3>{{ element.question }}</h3>
       <div class="box-suggestions">
         <ul>
@@ -267,6 +267,7 @@ li {
   line-height: 2;
   border: 1px solid grey;
   margin-bottom: 20px;
+  padding: 5px;
   border-radius: 15px;
   cursor: pointer;
   transition: 0.3s;
@@ -293,6 +294,7 @@ li > div {
   cursor: pointer;
   border-radius: 15px;
   margin: auto;
+  border: none;
   background-color: #858484;
 }
 
