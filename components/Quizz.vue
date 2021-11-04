@@ -1,6 +1,5 @@
 <template>
   <div class="container-quizz">
-    <div class="step-progress" :style="{ width: progress + '%' }"></div>
     <div
       class="main-quizz"
       v-for="(element, index) in questions.slice(a, b)"
@@ -8,8 +7,8 @@
       v-show="quizz"
     >
       <div class="box-question"></div>
-      <h2>Question{{ b }}/{{ questions.length }}</h2>
-      <p>{{ element.question }}</p>
+      <p>Question{{ b }}/{{ questions.length }}</p>
+      <h3>{{ element.question }}</h3>
       <div class="box-suggestions">
         <ul>
           <li
@@ -20,6 +19,7 @@
             {{ item.suggestion }}
             <div></div>
           </li>
+          <div class="step-progress" :style="{ width: progress + '%' }"></div>
         </ul>
       </div>
     </div>
@@ -32,6 +32,7 @@
         </button>
       </div>
     </div>
+
     <div class="footer-quizz">
       <div class="box-button" v-if="progress < 100">
         <button
@@ -317,7 +318,7 @@ export default {
         },
         {
           // Q11 - Dette
-          questions: "La dette française",
+          question: "La dette française",
           suggestions: [
             {
               suggestion:
@@ -491,15 +492,15 @@ export default {
       if (e.correct) {
         this.score++;
       }
-      console.log(e.suggestion)
+      console.log(e.suggestion);
       var elts = document.getElementsByTagName("li");
       for (let i = 0; i < elts.length; i++) {
         if (e.suggestion === elts[i].innerText) {
-          elts[i].style.color = 'white',
-          elts[i].style.backgroundColor = 'green'
+          (elts[i].style.color = "white"),
+            (elts[i].style.backgroundColor = "green");
         } else {
-          elts[i].style.color = 'black',
-          elts[i].style.backgroundColor = 'white'
+          (elts[i].style.color = "black"),
+            (elts[i].style.backgroundColor = "white");
         }
       }
     },
@@ -550,28 +551,6 @@ export default {
 
 
 <style scoped>
-.nextbtn {
-  background-color: #080036;
-  border-radius: 5px;
-  color: #fff;
-}
-.nexbtn:hover {
-  background-color: #fff;
-  color: #080036;
-  border: 1px solid #080036;
-}
-
-.prevbtn {
-  background-color: #430000;
-  color: white;
-}
-
-.prevbtn:hover {
-  background-color: #fff;
-  color: #430000;
-  border: 1px solid #430000;
-}
-
 .container-app {
   display: flex;
   width: 100%;
@@ -590,7 +569,6 @@ export default {
   text-align: center;
   border-radius: 10px;
   background-color: white;
-  border: 1px solid rgb(133, 133, 133);
 }
 
 .main-quizz {
@@ -618,8 +596,8 @@ export default {
   margin-top: 20px;
 }
 
-h2 {
-  margin-bottom: 10px;
+h3 {
+  margin-bottom: 20px;
 }
 
 .box-suggestions {
@@ -704,10 +682,11 @@ li > div {
 
 .step-progress {
   display: flex;
-  width: 100%;
   height: 5px;
-  background-color: #17b860;
+  background: linear-gradient(287.56deg, #ed2939 0%, #002395 100%);
   transition: 0.5s;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 @media Screen and (max-width: 900px) {

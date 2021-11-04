@@ -24,11 +24,16 @@
 
 .box {
   background-color: #fff;
-  height: 60vh;
-  width: 45vw;
+  height: 80vh;
+  width: 65vw;
   border-radius: 15px;
   box-shadow: 5px 5px 5px rgb(48, 48, 48);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
+
 .polygonblue {
   -webkit-clip-path: polygon(0 0, 0% 100%, 100% 0);
   clip-path: polygon(0 0, 0% 100%, 100% 0);
@@ -43,20 +48,6 @@
   z-index: 2;
 }
 
-.box {
-  background-color: #fff;
-  height: 60vh;
-  width: 45vw;
-  border-radius: 15px;
-  box-shadow: 5px 5px 5px rgb(48, 48, 48);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  align-items: center;
-}
-
-.box-header h1 {
-}
 .polygonred {
   -webkit-clip-path: polygon(100% 100%, 0% 100%, 100% 0);
   clip-path: polygon(100% 100%, 0% 100%, 100% 0);
