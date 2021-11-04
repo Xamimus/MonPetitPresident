@@ -23,8 +23,16 @@
       </div>
     </div>
     <div class="box-score" v-if="score_show">
-      <h2>Votre score est</h2>
-      <h2>{{ score }}/{{ questions.length }}</h2>
+      <h2>Voici votre résultat !</h2>
+      <div class="results-container">
+        <p 
+          v-for="(element, index) in displayResult"
+          :key="index"
+        >
+          {{element.name}} est apparu {{element.count}} fois.
+          {{element.count * 6.25}} / 100
+        </p>
+      </div>
       <div class="btn-restart">
         <button @click="restartQuizz">
           Recommencer <i class="fas fa-sync-alt"></i>
@@ -65,6 +73,9 @@ export default {
       score_show: false,
       next: false,
       progress: 0,
+      selectedValue: "",
+      finalResult: [],
+      displayResult: []
     };
   },
   mounted() {
@@ -93,35 +104,50 @@ export default {
     selectResponse(e) {
       this.select = true;
       this.next = true;
-      if (e.correct) {
-        this.score++;
-      }
-      console.log(e.suggestion);
       var elts = document.getElementsByTagName("li");
       for (let i = 0; i < elts.length; i++) {
-        if (e.suggestion === elts[i].innerText) {
-          (elts[i].style.color = "white"),
-            (elts[i].style.backgroundColor = "green");
+        if (e.text === elts[i].innerText) {
+          elts[i].style.color = "white";
+          elts[i].style.backgroundColor = "green";
         } else {
-          (elts[i].style.color = "black"),
-            (elts[i].style.backgroundColor = "white");
+          elts[i].style.color = "black";
+          elts[i].style.backgroundColor = "white";
         }
       }
+      this.selectedValue = e.value;
+      console.log("value : ", this.selectedValue)
     },
     nextQuestion() {
       if (!this.next) {
         return;
       }
+      if(this.selectedValue){
+        for(let value of this.selectedValue) {
+          this.finalResult.push(value)
+          console.log("Nombre de PS => ", this.finalResult.filter(function (value) {
+            return value === "PS"
+          }).length)
+        }
+      }
+      this.selectedValue = ""
+      console.log("Result : ", this.finalResult)
       // progress bar
       this.progress = this.progress + 100 / this.questions.length;
       if (this.questions.length - 1 == this.currentQuizzIndex) {
         this.currentQuizzIndex = 0;
         this.score_show = true;
         this.quizz = false;
+        this.getResult();
       } else {
         this.currentQuizzIndex++;
         this.select = false;
         this.next = false;
+      }
+
+      var elts = document.getElementsByTagName("li");
+      for (let i = 0; i < elts.length; i++) {
+          elts[i].style.color = 'black',
+          elts[i].style.backgroundColor = 'white'
       }
     },
     skipQuestion() {
@@ -135,9 +161,33 @@ export default {
         this.currentQuizzIndex = 0;
         this.score_show = true;
         this.quizz = false;
+        this.getResult();
       } else {
         this.currentQuizzIndex++;
       }
+      var elts = document.getElementsByTagName("li");
+      for (let i = 0; i < elts.length; i++) {
+          elts[i].style.color = 'black',
+          elts[i].style.backgroundColor = 'white'
+      }
+    },
+    getResult() {
+      const possibleAnswers = [
+        {slug: "PS", name:"Parti Socialiste", count: 0},
+        {slug:"LREM", name:"La République En Marche", count: 0}, 
+        {slug:"LFI", name:"La France Insoumise", count: 0}, 
+        {slug:"RN", name:"Rassemblement National", count: 0}, 
+        {slug:"ELV", name:"Europe écologie Les Verts", count: 0}, 
+        {slug:"LR", name:"Les Républicains", count: 0}
+      ];
+
+      for(let item of possibleAnswers){
+        item.count = this.finalResult.filter(function (value) {return value === item.slug}).length
+        this.displayResult.push(item)
+      }
+
+      this.displayResult = possibleAnswers;
+      console.log(this.displayResult)
     },
     restartQuizz() {
       Object.assign(this.$data, this.$options.data()); // reset data
