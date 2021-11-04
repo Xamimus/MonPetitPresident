@@ -53,12 +53,7 @@ export default {
       databaseUrl: process.env.databaseUrl
     },
     services: {
-      firestore: {
-        memoryOnly: false, // default
-        enablePersistence: true,
-        emulatorPort: 8080,
-        emulatorHost: 'localhost',
-      }, // Just as example. Can be any other service.
+      firestore: true // Just as example. Can be any other service.
     },
   },
 

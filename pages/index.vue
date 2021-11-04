@@ -41,12 +41,12 @@ export default {
         MyContent: '',
       };
     },
-    created() {
+    mounted() {
       this.$fire.firestore
       .collection('questions')
       .doc('Hk7ctzR5hbzEwq2BOoIZ')
       .get()
-      .then((question) => console.log(question.data()))
+      .then((e) => console.log(e.data()))
     },
     methods: {
       showModal(Title, Content) {
