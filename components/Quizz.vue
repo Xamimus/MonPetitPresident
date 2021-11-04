@@ -31,7 +31,7 @@
         >
           {{element.name}} est apparu {{element.count}} fois. 
           <span class="result-score">
-            {{element.count * (100 / finalResult.length)}} %
+            {{(element.count * (100 / finalResult.length)).toFixed(2)}} %
           </span>
         </p>
       </div>
