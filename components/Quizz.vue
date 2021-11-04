@@ -29,8 +29,10 @@
           v-for="(element, index) in displayResult"
           :key="index"
         >
-          {{element.name}} est apparu {{element.count}} fois.
-          {{element.count * 6.25}} / 100
+          {{element.name}} est apparu {{element.count}} fois. 
+          <span class="result-score">
+            {{element.count * (100 / finalResult.length)}} %
+          </span>
         </p>
       </div>
       <div class="btn-restart">
@@ -89,10 +91,8 @@ export default {
         let data = e.data()
 
         for(let object of Object.entries(data)){
-          console.log("currentObject : ", object)
           this.questions.push(object)
         }
-        console.log("this.questions : ", this.questions)
       })
 
       
@@ -115,7 +115,6 @@ export default {
         }
       }
       this.selectedValue = e.value;
-      console.log("value : ", this.selectedValue)
     },
     nextQuestion() {
       if (!this.next) {
@@ -124,13 +123,9 @@ export default {
       if(this.selectedValue){
         for(let value of this.selectedValue) {
           this.finalResult.push(value)
-          console.log("Nombre de PS => ", this.finalResult.filter(function (value) {
-            return value === "PS"
-          }).length)
         }
       }
       this.selectedValue = ""
-      console.log("Result : ", this.finalResult)
       // progress bar
       this.progress = this.progress + 100 / this.questions.length;
       if (this.questions.length - 1 == this.currentQuizzIndex) {
@@ -187,7 +182,6 @@ export default {
       }
 
       this.displayResult = possibleAnswers;
-      console.log(this.displayResult)
     },
     restartQuizz() {
       Object.assign(this.$data, this.$options.data()); // reset data
@@ -336,6 +330,10 @@ li > div {
   transition: 0.5s;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.result-score{
+  font-weight: 800;
 }
 
 @media Screen and (max-width: 900px) {
