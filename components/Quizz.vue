@@ -101,10 +101,11 @@ export default {
     },
   methods: {
     selectResponse(e) {
-      this.isActiveNextButton = true;
+      
+      this.selectedValue = e.value === this.selectedValue ? "" : e.value;
       var elts = document.getElementsByTagName("li");
       for (let i = 0; i < elts.length; i++) {
-        if (e.text === elts[i].innerText) {
+        if (e.text === elts[i].innerText && this.selectedValue) {
           elts[i].style.color = "white";
           elts[i].style.backgroundColor = "green";
         } else {
@@ -112,12 +113,11 @@ export default {
           elts[i].style.backgroundColor = "white";
         }
       }
-      this.selectedValue = e.value;
+      this.isActiveNextButton = this.selectedValue ? true : false;
     },
     nextQuestion() {
-      if (!this.isActiveNextButton) {
-        return;
-      }
+      if (!this.isActiveNextButton) return;
+
       if(this.selectedValue){
         for(let value of this.selectedValue) {
           this.finalResult.push(value)
@@ -142,11 +142,9 @@ export default {
       }
     },
     skipQuestion() {
-      if (this.isActiveNextButton) {
-        return;
-      }
-      // progress bar
-      this.progress = this.progress + 100 / this.questions.length;
+      if (this.isActiveNextButton) return;
+
+      this.progressBarValue = this.progressBarValue + 100 / this.questions.length;
 
       if (this.questions.length - 1 == this.currentQuizzIndex) {
         this.currentQuizzIndex = 0;
