@@ -4,7 +4,7 @@
       class="main-quizz"
       v-for="(element, index) in questions[currentQuizzIndex]"
       :key="index"
-      v-show="quizz">
+      v-show="showQuizz">
       <div class="box-question"></div>
       <p>Question {{ currentQuizzIndex + 1 }}/{{ questions.length }}</p>
       <h3>{{ element.question }}</h3>
@@ -18,11 +18,11 @@
             {{ item.text }}
             <div></div>
           </li>
-          <div class="step-progress" :style="{ width: progress + '%' }"></div>
+          <div class="step-progress" :style="{ width: progressBarValue + '%' }"></div>
         </ul>
       </div>
     </div>
-    <div class="box-score" v-if="score_show">
+    <div class="box-score" v-if="showScore">
       <h2>Voici votre résultat !</h2>
       <div class="results-container">
         <p 
@@ -43,16 +43,16 @@
     </div>
 
     <div class="footer-quizz">
-      <div class="box-button" v-if="progress < 100">
+      <div class="box-button" v-if="progressBarValue < 100">
         <button
           @click="skipQuestion"
-          :style="!next ? 'background-color: rgb(40,162,59)' : ''"
+          :style="!isActiveNextButton ? 'background-color: rgb(40,162,59)' : ''"
         >
           Skip
         </button>
         <button
           @click="nextQuestion"
-          :style="next ? 'background-color: rgb(40,162,59)' : ''"
+          :style="isActiveNextButton ? 'background-color: rgb(40,162,59)' : ''"
         >
           Next
         </button>
@@ -69,12 +69,11 @@ export default {
     return {
       questions: [],
       currentQuizzIndex: 0,
-      select: false,
       score: 0,
-      quizz: true,
-      score_show: false,
-      next: false,
-      progress: 0,
+      showQuizz: true,
+      showScore: false,
+      isActiveNextButton: false,
+      progressBarValue: 0,
       selectedValue: "",
       finalResult: [],
       displayResult: []
@@ -102,8 +101,7 @@ export default {
     },
   methods: {
     selectResponse(e) {
-      this.select = true;
-      this.next = true;
+      this.isActiveNextButton = true;
       var elts = document.getElementsByTagName("li");
       for (let i = 0; i < elts.length; i++) {
         if (e.text === elts[i].innerText) {
@@ -117,7 +115,7 @@ export default {
       this.selectedValue = e.value;
     },
     nextQuestion() {
-      if (!this.next) {
+      if (!this.isActiveNextButton) {
         return;
       }
       if(this.selectedValue){
@@ -126,17 +124,15 @@ export default {
         }
       }
       this.selectedValue = ""
-      // progress bar
-      this.progress = this.progress + 100 / this.questions.length;
+      this.progressBarValue = this.progressBarValue + 100 / this.questions.length;
       if (this.questions.length - 1 == this.currentQuizzIndex) {
         this.currentQuizzIndex = 0;
-        this.score_show = true;
-        this.quizz = false;
+        this.showScore = true;
+        this.showQuizz = false;
         this.getResult();
       } else {
         this.currentQuizzIndex++;
-        this.select = false;
-        this.next = false;
+        this.isActiveNextButton = false;
       }
 
       var elts = document.getElementsByTagName("li");
@@ -146,7 +142,7 @@ export default {
       }
     },
     skipQuestion() {
-      if (this.next) {
+      if (this.isActiveNextButton) {
         return;
       }
       // progress bar
@@ -154,8 +150,8 @@ export default {
 
       if (this.questions.length - 1 == this.currentQuizzIndex) {
         this.currentQuizzIndex = 0;
-        this.score_show = true;
-        this.quizz = false;
+        this.showScore = true;
+        this.showQuizz = false;
         this.getResult();
       } else {
         this.currentQuizzIndex++;
@@ -184,7 +180,7 @@ export default {
       this.displayResult = possibleAnswers;
     },
     restartQuizz() {
-      Object.assign(this.$data, this.$options.data()); // reset data
+      location.reload();
     },
   },
 };

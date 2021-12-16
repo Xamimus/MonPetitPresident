@@ -19,10 +19,6 @@
 export default {
     name: 'App',
     props: ["method"],
-    created() {
-        // Use the parent function directly here
-        //this.method();
-    },
     methods: {
         showModal(Title, Content) {
             this.method();
